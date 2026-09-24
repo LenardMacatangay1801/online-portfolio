@@ -77,12 +77,17 @@ export function Summary() {
         />
 
         <div className="relative p-6 sm:p-8 lg:p-10">
-          <p className="max-w-4xl font-display text-xl leading-snug font-semibold tracking-tight text-fg sm:text-2xl lg:text-[1.65rem] lg:leading-snug">
+          <p className="max-w-4xl font-display text-base leading-snug font-semibold tracking-tight text-fg sm:text-lg lg:text-[1.65rem] lg:leading-snug">
             <Lead text={lead} />
           </p>
 
+          <p className="mt-4 text-sm leading-relaxed font-medium text-heliotrope lg:hidden">
+            {resume.roles.join(' · ')}
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-mist lg:hidden">{resume.location}</p>
+
           <motion.dl
-            className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+            className="mt-8 hidden gap-3 sm:grid-cols-2 lg:grid lg:grid-cols-4"
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
@@ -100,7 +105,7 @@ export function Summary() {
             ))}
           </motion.dl>
 
-          <div className="mt-8 grid gap-6 border-t border-line pt-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] lg:gap-10">
+          <div className="mt-8 hidden gap-6 border-t border-line pt-6 lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] lg:gap-10">
             <div>
               <p className="text-xs font-medium text-muted">Target roles</p>
               <ul className="mt-3 flex flex-col gap-2">

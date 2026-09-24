@@ -72,7 +72,7 @@ export function Education() {
 
             <div className="mt-8">
               <h4 className="text-sm font-semibold text-fg">Focus areas</h4>
-              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-3 flex flex-wrap gap-2 lg:grid lg:grid-cols-2">
                 {education.focus.map((item, i) => (
                   <motion.li
                     key={item}
@@ -81,9 +81,9 @@ export function Education() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.08 * i }}
                     whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 rounded-xl border border-line bg-panel-2/80 px-3 py-2.5 transition hover:border-heliotrope/40"
+                    className="rounded-full bg-panel-2 px-3 py-1.5 text-sm font-medium text-mist lg:flex lg:items-center lg:gap-3 lg:rounded-xl lg:border lg:border-line lg:bg-panel-2/80 lg:px-3 lg:py-2.5 lg:transition lg:hover:border-heliotrope/40"
                   >
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-heliotrope/15 font-display text-xs font-bold text-heliotrope">
+                    <span className="hidden h-8 w-8 items-center justify-center rounded-lg bg-heliotrope/15 font-display text-xs font-bold text-heliotrope lg:flex">
                       {focusIcons[item] ?? item.charAt(0)}
                     </span>
                     <span className="text-sm font-medium text-mist">{item}</span>
@@ -93,7 +93,7 @@ export function Education() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="hidden flex-col gap-4 lg:flex">
             <motion.div
               whileHover={{ y: -4 }}
               className="rounded-2xl border border-heliotrope/35 bg-gradient-to-br from-heliotrope/15 to-transparent p-5"

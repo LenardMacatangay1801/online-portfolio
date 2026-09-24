@@ -89,7 +89,7 @@ export function Contact() {
               collaborative web projects.
             </p>
 
-            <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={`mailto:${resume.email}?subject=Hello%20Lenard`}
                 className="btn-base btn-primary w-full sm:w-auto"
@@ -117,10 +117,23 @@ export function Contact() {
                 Resume PDF — coming soon
               </SoonButton>
             </div>
+            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 lg:hidden">
+              {channels
+                .filter((channel) => channel.label !== 'Email')
+                .map((channel) => (
+                  <li
+                    key={channel.label}
+                    className="inline-flex items-center gap-2 text-sm text-mist"
+                  >
+                    <span className="soon-pulse" aria-hidden />
+                    {channel.label}
+                  </li>
+                ))}
+            </ul>
           </div>
         </motion.div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="hidden gap-3 sm:grid-cols-2 lg:grid lg:grid-cols-1">
           {channels.map((channel, i) => {
             const ready = Boolean(channel.value)
             const inner = (

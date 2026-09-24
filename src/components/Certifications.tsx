@@ -62,7 +62,12 @@ export function Certifications() {
               ))}
             </ul>
           ) : (
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            <>
+              <p className="mt-4 inline-flex items-center gap-2 text-sm text-mist lg:hidden">
+                <span className="soon-pulse" aria-hidden />
+                Certificates to be added soon
+              </p>
+              <ul className="mt-6 hidden gap-3 lg:grid lg:grid-cols-2">
               {emptyCertSlots.map((slot, i) => (
                 <motion.li
                   key={slot.title}
@@ -98,7 +103,8 @@ export function Certifications() {
                   </p>
                 </motion.li>
               ))}
-            </ul>
+              </ul>
+            </>
           )}
         </motion.div>
 
@@ -126,7 +132,7 @@ export function Certifications() {
           </motion.div>
 
           <motion.div
-            className="rounded-2xl border border-line bg-panel/90 p-6"
+            className="hidden rounded-2xl border border-line bg-panel/90 p-6 lg:block"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -186,6 +186,24 @@
     border-radius: 0.5rem;
   }
 
+  @media (max-width: 359px) {
+    .hero-actions .btn-base {
+      min-height: 40px;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.6875rem;
+      gap: 0.3rem;
+    }
+  }
+
+  @media (min-width: 360px) and (max-width: 639px) {
+    .hero-actions .btn-base {
+      min-height: 42px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+      gap: 0.35rem;
+    }
+  }
+
   .soon-pulse {
     width: 0.45rem;
     height: 0.45rem;

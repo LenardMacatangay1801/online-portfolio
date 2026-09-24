@@ -203,14 +203,14 @@ export function Skills() {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-5">
         {groups.map((group, gi) => {
           const isGroupActive = activeGroup === group.id
           return (
             <motion.div
               key={group.id}
               id={`skill-group-${group.id}`}
-              className={`group relative scroll-mt-28 overflow-hidden rounded-2xl border bg-panel/90 p-6 transition ${
+              className={`group relative scroll-mt-28 overflow-hidden rounded-2xl border bg-panel/90 p-3 transition lg:p-6 ${
                 isGroupActive
                   ? 'accent-shadow-40 border-heliotrope'
                   : 'border-line hover:border-heliotrope/45'
@@ -224,12 +224,16 @@ export function Skills() {
                 aria-hidden
                 className="pointer-events-none absolute -top-10 -right-10 h-28 w-28 rounded-full bg-heliotrope/10 blur-2xl transition group-hover:bg-heliotrope/20"
               />
-              <h3 className="relative font-display text-lg font-semibold tracking-tight text-fg">
-                {group.label}
-              </h3>
-              <p className="relative mt-1 text-sm text-muted">{group.description}</p>
+              <div className="relative">
+                <h3 className="font-display text-sm font-semibold tracking-tight text-fg lg:text-lg">
+                  {group.label}
+                </h3>
+                <p className="mt-0.5 text-[11px] leading-snug text-muted lg:mt-1 lg:text-sm">
+                  {group.description}
+                </p>
+              </div>
               <motion.ul
-                className="relative mt-5 flex flex-col gap-2"
+                className="relative mt-2.5 flex flex-col gap-1 lg:mt-5 lg:gap-2"
                 variants={staggerFast}
                 initial="hidden"
                 whileInView="show"
@@ -248,14 +252,22 @@ export function Skills() {
                       variants={listItem}
                       whileHover={{ x: 4 }}
                       whileTap={tapSoft}
-                      className={`flex scroll-mt-32 items-center gap-3 rounded-xl px-3 py-2.5 transition ${
+                      className={`flex scroll-mt-32 items-center gap-1.5 py-0.5 lg:gap-3 lg:rounded-xl lg:px-3 lg:py-2.5 lg:transition ${
                         isActive
-                          ? 'bg-heliotrope/20 ring-1 ring-heliotrope/60'
-                          : 'bg-panel-2 ring-1 ring-fg/8'
+                          ? 'text-fg lg:bg-heliotrope/20 lg:ring-1 lg:ring-heliotrope/60'
+                          : 'text-mist lg:bg-panel-2 lg:ring-1 lg:ring-fg/8'
                       }`}
                     >
-                      <SkillIcon skill={meta} size={22} />
-                      <span className="text-sm font-medium text-mist">{name}</span>
+                      <span
+                        className={`h-1 w-1 shrink-0 rounded-full lg:hidden ${
+                          isActive ? 'bg-fg' : 'bg-heliotrope'
+                        }`}
+                        aria-hidden
+                      />
+                      <span className="hidden lg:inline-flex">
+                        <SkillIcon skill={meta} size={22} />
+                      </span>
+                      <span className="text-[11px] leading-tight font-medium lg:text-sm">{name}</span>
                     </motion.li>
                   )
                 })}

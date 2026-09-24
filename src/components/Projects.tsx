@@ -120,7 +120,7 @@ function ProjectPreview({ project }: { project: Project }) {
         : FrontendSketch
 
   return (
-    <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-xl border border-line bg-panel-2">
+    <div className="relative mb-4 h-36 overflow-hidden rounded-xl border border-line bg-panel-2 lg:mb-5 lg:h-auto lg:aspect-[16/10]">
       <div className="accent-preview absolute inset-0" />
       <div className="cyber-grid absolute inset-0 opacity-40" />
       <Sketch />
@@ -175,12 +175,12 @@ function ProjectCard({
       <h3 className="font-display text-xl font-semibold tracking-tight text-fg transition group-hover:text-heliotrope">
         {project.title}
       </h3>
-      <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted">
+      <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted lg:line-clamp-3">
         {project.blurb}
       </p>
 
-      {/* Progress */}
-      <div className="mt-5">
+      {/* Progress stays on the desktop card; mobile readers open View details */}
+      <div className="mt-5 hidden lg:block">
         <div className="mb-1.5 flex items-center justify-between text-[11px] font-medium">
           <span className="text-muted">Progress</span>
           <span className="text-heliotrope">{project.progress}%</span>
@@ -196,7 +196,7 @@ function ProjectCard({
         </div>
       </div>
 
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="mt-4 hidden flex-wrap gap-2 lg:flex">
         {project.stack.map((tech) => {
           const icon = stackIcons[tech]
           return (

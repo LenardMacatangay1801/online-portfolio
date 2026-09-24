@@ -137,7 +137,7 @@ export function Hero() {
           />
         </motion.div>
 
-        <div className="relative z-20 order-2 lg:order-1">
+        <div className="relative z-20 order-2 min-w-0 lg:order-1">
           <motion.h1
             className="name-stroke font-display text-[2rem] leading-[1.1] font-bold tracking-tight text-heliotrope sm:text-5xl lg:text-[3.5rem]"
             initial={{ opacity: 0, y: 28 }}
@@ -172,14 +172,14 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center"
+            className="hero-actions mt-6 flex w-full min-w-0 flex-nowrap items-center justify-start gap-1.5 sm:mt-8 sm:flex-wrap sm:gap-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.38 }}
           >
             <motion.a
               href="#projects"
-              className="btn-base btn-primary group w-full sm:w-auto"
+              className="btn-base btn-primary group w-auto shrink-0 whitespace-nowrap"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -190,14 +190,15 @@ export function Hero() {
             </motion.a>
             <motion.a
               href={`mailto:${resume.email}`}
-              className="btn-base btn-secondary w-full sm:w-auto"
+              className="btn-base btn-secondary w-auto shrink-0 whitespace-nowrap"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
               Contact
             </motion.a>
-            <SoonButton className="w-full sm:w-auto">
-              Resume PDF — coming soon
+            <SoonButton className="w-auto shrink-0 whitespace-nowrap">
+              <span className="sm:hidden">Resume PDF</span>
+              <span className="hidden sm:inline">Resume PDF — coming soon</span>
             </SoonButton>
           </motion.div>
 
