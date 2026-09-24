@@ -1,0 +1,454 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Sora', sans-serif;
+  --font-sans: 'Manrope', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-void: #05030a;
+  --color-ink: #0c0814;
+  --color-panel: #120c1c;
+  --color-panel-2: #1a1228;
+  --color-heliotrope: #df73ff;
+  --color-heliotrope-dim: #b44dd9;
+  --color-neon-cyan: #5ce1ff;
+  --color-neon-yellow: #f5e74e;
+  --color-mist: #c8bdd8;
+  --color-muted: #8a7a9e;
+  --color-fg: #ffffff;
+  --color-line: rgba(223, 115, 255, 0.22);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    color: var(--color-mist);
+    background: var(--color-void);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100svh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-heliotrope) 45%, transparent);
+    color: white;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-neon-cyan);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .name-stroke {
+    -webkit-text-stroke: 1.5px color-mix(in oklab, white 82%, var(--color-heliotrope));
+    paint-order: stroke fill;
+  }
+
+  .text-glow {
+    text-shadow:
+      0 0 18px color-mix(in oklab, var(--color-heliotrope) 55%, transparent),
+      0 0 40px color-mix(in oklab, var(--color-heliotrope) 25%, transparent);
+  }
+
+  .box-glow {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--color-heliotrope) 35%, transparent),
+      0 0 40px color-mix(in oklab, var(--color-heliotrope) 18%, transparent);
+  }
+
+  .cyber-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-heliotrope) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-heliotrope) 8%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+  }
+
+  .scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.12) 2px,
+      rgba(0, 0, 0, 0.12) 4px
+    );
+    pointer-events: none;
+  }
+
+  .clip-corner {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  /* Button styles — swap btn-* classes to try different shapes */
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease,
+      transform 0.15s ease;
+  }
+
+  .btn-base:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  /* A — Soft rounded (current default) */
+  .btn-primary {
+    border-radius: 0.625rem;
+    background: var(--color-heliotrope);
+    color: var(--color-void);
+    padding: 0.7rem 1.35rem;
+  }
+  .btn-primary:hover {
+    background: color-mix(in oklab, var(--color-heliotrope) 78%, var(--color-fg));
+    color: var(--color-void);
+  }
+
+  .btn-secondary {
+    border-radius: 0.625rem;
+    border: 1px solid color-mix(in oklab, var(--color-heliotrope) 55%, transparent);
+    background: transparent;
+    color: var(--color-heliotrope);
+    padding: 0.7rem 1.35rem;
+  }
+  .btn-secondary:hover {
+    background: color-mix(in oklab, var(--color-heliotrope) 12%, transparent);
+    border-color: var(--color-heliotrope);
+  }
+
+  .btn-ghost {
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-muted);
+    padding: 0.7rem 1.2rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  /* Intentional placeholder — missing links, PDF, and demos share this */
+  .btn-soon {
+    border-radius: 0.625rem;
+    border: 1px dashed color-mix(in oklab, var(--color-heliotrope) 55%, transparent);
+    background: color-mix(in oklab, var(--color-heliotrope) 8%, transparent);
+    color: var(--color-mist);
+    padding: 0.7rem 1.15rem;
+    cursor: default;
+    user-select: none;
+  }
+
+  .btn-soon-compact {
+    min-height: 36px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+  }
+
+  .soon-pulse {
+    width: 0.45rem;
+    height: 0.45rem;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: var(--color-neon-yellow);
+    box-shadow: 0 0 10px color-mix(in oklab, var(--color-neon-yellow) 80%, transparent);
+  }
+
+  .demo-slot {
+    border-style: dashed;
+    border-color: color-mix(in oklab, var(--color-heliotrope) 42%, transparent);
+    background-image: linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--color-heliotrope) 10%, transparent),
+      transparent 46%
+    );
+  }
+
+  /* B — Pill (add btn-pill alongside primary/secondary) */
+  .btn-pill {
+    border-radius: 9999px;
+  }
+
+  /* C — Sharp minimal (almost square) */
+  .btn-sharp {
+    border-radius: 0.25rem;
+  }
+
+  /* D — Text link style */
+  .btn-link {
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-heliotrope);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-heliotrope) 45%, transparent);
+  }
+  .btn-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    background: transparent;
+  }
+
+  .skill-marquee-track {
+    will-change: transform;
+  }
+
+  .animate-marquee-left {
+    animation-name: marquee-left;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .animate-marquee-right {
+    animation-name: marquee-right;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .accent-shadow-10 {
+    box-shadow: 0 0 10px color-mix(in oklab, var(--color-heliotrope) 80%, transparent);
+  }
+  .accent-shadow-12 {
+    box-shadow: 0 0 12px color-mix(in oklab, var(--color-heliotrope) 70%, transparent);
+  }
+  .accent-shadow-20 {
+    box-shadow: 0 0 20px color-mix(in oklab, var(--color-heliotrope) 45%, transparent);
+  }
+  .accent-shadow-24 {
+    box-shadow: 0 0 24px color-mix(in oklab, var(--color-heliotrope) 35%, transparent);
+  }
+  .accent-shadow-24-soft {
+    box-shadow: 0 0 24px color-mix(in oklab, var(--color-heliotrope) 15%, transparent);
+  }
+  .accent-shadow-36 {
+    box-shadow: 0 0 36px color-mix(in oklab, var(--color-heliotrope) 35%, transparent);
+  }
+  .accent-shadow-40 {
+    box-shadow: 0 0 40px color-mix(in oklab, var(--color-heliotrope) 20%, transparent);
+  }
+  .accent-shadow-60 {
+    box-shadow: 0 0 60px color-mix(in oklab, var(--color-heliotrope) 20%, transparent);
+  }
+  .accent-shadow-card {
+    box-shadow: 0 20px 50px color-mix(in oklab, var(--color-heliotrope) 12%, transparent);
+  }
+  .accent-shadow-lift {
+    box-shadow: 0 12px 40px color-mix(in oklab, var(--color-heliotrope) 12%, transparent);
+  }
+  .accent-shadow-photo {
+    box-shadow: 0 20px 50px color-mix(in oklab, var(--color-heliotrope) 18%, transparent);
+  }
+  .accent-drop {
+    filter: drop-shadow(0 20px 50px color-mix(in oklab, var(--color-heliotrope) 18%, transparent));
+  }
+  .accent-wash {
+    background: radial-gradient(
+      ellipse 70% 55% at 75% 40%,
+      color-mix(in oklab, var(--color-heliotrope) 16%, transparent),
+      transparent 60%
+    );
+  }
+  .accent-preview {
+    background:
+      radial-gradient(
+        ellipse at 30% 20%,
+        color-mix(in oklab, var(--color-heliotrope) 28%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 80% 80%,
+        color-mix(in oklab, var(--color-neon-cyan) 12%, transparent),
+        transparent 50%
+      );
+  }
+  .accent-atmos {
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-heliotrope) 18%, transparent),
+      transparent 68%
+    );
+  }
+  .accent-atmos-soft {
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-heliotrope) 12%, transparent),
+      transparent 70%
+    );
+  }
+  .accent-atmos-dim {
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-heliotrope-dim) 14%, transparent),
+      transparent 68%
+    );
+  }
+  .accent-atmos-faint {
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-heliotrope) 10%, transparent),
+      transparent 70%
+    );
+  }
+
+  .typing-caret {
+    display: inline-block;
+    width: 2px;
+    height: 0.9em;
+    margin-left: 2px;
+    background: var(--color-heliotrope);
+    box-shadow: 0 0 8px color-mix(in oklab, var(--color-heliotrope) 70%, transparent);
+    animation: caret-blink 1s steps(1) infinite;
+  }
+
+  @keyframes caret-blink {
+    0%,
+    45% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-left,
+    .animate-marquee-right,
+    .typing-caret {
+      animation: none;
+    }
+  }
+}
+
+html[data-theme='heliotrope'] {
+  --color-void: #05030a;
+  --color-ink: #0c0814;
+  --color-panel: #120c1c;
+  --color-panel-2: #1a1228;
+  --color-heliotrope: #df73ff;
+  --color-heliotrope-dim: #b44dd9;
+  --color-mist: #c8bdd8;
+  --color-muted: #8a7a9e;
+  --color-fg: #ffffff;
+  --color-line: color-mix(in oklab, #df73ff 22%, transparent);
+}
+
+html[data-theme='ink'] {
+  --color-void: #050505;
+  --color-ink: #000000;
+  --color-panel: #111111;
+  --color-panel-2: #1a1a1a;
+  --color-heliotrope: #f4f4f5;
+  --color-heliotrope-dim: #c8c8c8;
+  --color-mist: #e6e6e6;
+  --color-muted: #9a9a9a;
+  --color-fg: #f4f4f5;
+  --color-line: color-mix(in oklab, #f4f4f5 18%, transparent);
+}
+
+html[data-theme='rose'] {
+  --color-void: #0a0306;
+  --color-ink: #14080c;
+  --color-panel: #1c0c14;
+  --color-panel-2: #28121c;
+  --color-heliotrope: #ff4d8d;
+  --color-heliotrope-dim: #d42a6a;
+  --color-mist: #e4bdd0;
+  --color-muted: #a67a90;
+  --color-fg: #ffffff;
+  --color-line: color-mix(in oklab, #ff4d8d 22%, transparent);
+}
+
+html[data-theme='red'] {
+  --color-void: #0a0303;
+  --color-ink: #140808;
+  --color-panel: #1c0c0c;
+  --color-panel-2: #281212;
+  --color-heliotrope: #ff3b3b;
+  --color-heliotrope-dim: #c41e1e;
+  --color-mist: #e8c4c4;
+  --color-muted: #a67a7a;
+  --color-fg: #ffffff;
+  --color-line: color-mix(in oklab, #ff3b3b 22%, transparent);
+}
+
+html[data-theme='blue'] {
+  --color-void: #03060f;
+  --color-ink: #080c18;
+  --color-panel: #0c1224;
+  --color-panel-2: #121a30;
+  --color-heliotrope: #3b82f6;
+  --color-heliotrope-dim: #1d4ed8;
+  --color-mist: #c5d4ee;
+  --color-muted: #7a8eae;
+  --color-fg: #ffffff;
+  --color-line: color-mix(in oklab, #3b82f6 22%, transparent);
+}
+
+@utility accent-shadow-card {
+  box-shadow: 0 20px 50px color-mix(in oklab, var(--color-heliotrope) 12%, transparent);
+}
+@utility accent-shadow-24-soft {
+  box-shadow: 0 0 24px color-mix(in oklab, var(--color-heliotrope) 15%, transparent);
+}
+@utility accent-shadow-lift {
+  box-shadow: 0 12px 40px color-mix(in oklab, var(--color-heliotrope) 12%, transparent);
+}

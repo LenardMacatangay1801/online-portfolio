@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Lenard Macatangay — Frontend, Full-Stack & Website Developer based in Batangas City, Philippines."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Lenard Macatangay | Frontend & Full-Stack Developer</title>
+    <script>
+      try {
+        var saved = localStorage.getItem('resume-theme')
+        var allowed = ['ink', 'heliotrope', 'rose', 'red', 'blue']
+        document.documentElement.dataset.theme =
+          allowed.indexOf(saved) !== -1 ? saved : 'heliotrope'
+      } catch (e) {
+        document.documentElement.dataset.theme = 'heliotrope'
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
